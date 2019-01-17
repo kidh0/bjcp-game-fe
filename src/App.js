@@ -28,6 +28,7 @@ function Option({id, answer, onClick, ...rest }) {
 function Game(props) {
   const question = props.data
   const points = props.points
+  const loading = props.loading
   return (
     <div className="wrapper">
       <Option id="1" answer={question.options[0].id} onClick={props.onClick}>{question.options[0].name}</Option>
@@ -36,9 +37,11 @@ function Game(props) {
       <Option id="4" answer={question.options[3].id} onClick={props.onClick}>{question.options[3].name}</Option>
       <div className="info">{question.type} : {question.content}</div>
       <div className="points">Points: {points}</div>
-      {/* <div className="loader">
+      {loading &&
+      <div className="loader">
         <img src={loader} alt="loader" />
-      </div> */}
+      </div>
+      }
     </div>
   )
 }
@@ -49,7 +52,7 @@ class App extends Component {
     super(props);
     this.handleShowGameClick = this.handleShowGameClick.bind(this);
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    this.state = { showGame: false, points: 0 }
+    this.state = { showGame: false, points: 0, loading: false }
   }
 
   componentDidMount() {
@@ -57,9 +60,11 @@ class App extends Component {
   }
 
   loadRemoteData() {
+    this.setState({loading: true})
     fetch('https://bjcp-game-be.herokuapp.com/next')
       .then(response => response.json())
-      .then(data => this.setState({ data: data }));
+      .then(data => this.setState({ data: data }))
+      .then(() => this.setState({loading: false}));
   }
 
   handleAnswerClick(answer) {
@@ -79,7 +84,7 @@ class App extends Component {
     let content;
 
     if (showGame) {
-      content = <Game onClick={this.handleAnswerClick} points={this.state.points} data={this.state.data} />
+      content = <Game onClick={this.handleAnswerClick} loading={this.state.loading} points={this.state.points} data={this.state.data} />
     } else {
       content = <Intro onClick={this.handleShowGameClick} />
     }
