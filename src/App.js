@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import bjcp from './bjcp.png';
 import loader from './loader.svg';
 import './App.css';
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 function Intro(props) {
   return (
@@ -52,7 +54,7 @@ class App extends Component {
     super(props);
     this.handleShowGameClick = this.handleShowGameClick.bind(this);
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    this.state = { showGame: false, points: 0, loading: false }
+    this.state = { showGame: false, points: 0, loading: false }    
   }
 
   componentDidMount() {
@@ -69,13 +71,17 @@ class App extends Component {
 
   handleAnswerClick(answer) {
     const points = this.state.points;
-    if(answer == this.state.data.answer) {
+    if(answer === this.state.data.answer) {
+      NotificationManager.success('+1 points', 'You got it!',2000);
       this.setState({points: points+1})
+    } else {
+      NotificationManager.error('-1 points', 'You miss it!',2000);
+      this.setState({ points: points -1})
     }
     this.loadRemoteData();
   }
 
-  handleShowGameClick() {
+  handleShowGameClick() {    
     this.setState({showGame: true})
   }
 
@@ -92,6 +98,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         {content}
+        <NotificationContainer/>
       </div>
     );
   }
