@@ -49,13 +49,9 @@
 }
 .points {
   background-color: #301213;
-  position: absolute;
-  font-size: 1.3em;
-  right: 0px;
-  top: 0px;
+  position: absolute;  
   color: #fff;
-  padding: 15px 20px;
-  border-radius: 0px 0px 0px 100px;
+  padding: 10px 15px;  
 }
 .info {
   background-color: #E9D67C;
@@ -78,33 +74,18 @@
   width: 20vw;
   transform: translate(-50%, -50%);
 }
-@media (min-width: 601px)
-{
-  .info {
-    width: 30%;
-    height: 100%;
-    left: 50%;
-    top: 50%;
-    font-size: 2vw;
-    transform: translate(-50%, -50%);
-  }
-  .intro h1 {
-    font-size: 7vh;
-  }
-  .intro p {
-    font-size: 4vh;
-    max-width: 40vw;
-    margin: 0px auto;
-  }
-}
+
 .options {
   cursor: pointer;
   position: absolute;
-  width: 35%;
-  height: 50%;
+  /* width: 35%; */
+  /* height: 50%; */
   text-align: center;
   text-shadow: 1px 1px 3px #F0EEBB;
+  padding: 10px 5px;
+  word-break: word-break
 }
+
 .options h2 {
   position: absolute;
   font-size: 4vw;
@@ -114,31 +95,73 @@
 }
 #option-1 {
   background-color: #F0EEBB;
-  left: 0px;
-  top: 0px;
 }
 #option-2 {
   background-color: #DCB135;
-  right: 0px;
-  top: 0px;
 }
 #option-3 {
   background-color: #C88A2C;
-  left: 0px;
-  bottom: 0px;
 }
 #option-4 {
   background-color: #A6572D;
-  right: 0px;
-  bottom: 0px;
+}
+
+.points {
+  font-size: 4vw;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 8%;
+}
+
+@media (min-width: 601px)
+{
+  .info {
+    width: 100%;
+    height: 50%;
+    left: 0;
+    top: 0;
+    font-size: 3vw;
+  }
+  .intro h1 {
+    font-size: 7vh;
+  }
+  .intro p {
+    font-size: 4vh;
+    max-width: 40vw;
+    margin: 0px auto;
+  }
+  .options {
+    font-size: 4vw;
+    height: 22%;
+    width: 50%;
+  }
+  #option-1 {
+    bottom: 28%;
+  }
+  #option-2 {
+    bottom: 28%;
+    left: 50%;
+  }
+  #option-3 {
+    bottom: 8%;
+  }
+  #option-4 {
+     bottom: 8%;
+     right: 0px;
+  }
 }
 
 @media (max-width: 600px)
 {
   .options {
-    font-size: 3vw;
+    font-size: 5vw;
     height: 25%;
     width: 25%;
+  }
+  .points {  
+    bottom: 0%;
+    height: 6%;
   }
   .info {
     top: 0px;
@@ -158,6 +181,10 @@
   #option-3 {
     left: 50%;
     top: 75%;
+  }
+  #option-4 {
+    bottom: 0;
+    right: 0;
   }
 }
 
