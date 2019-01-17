@@ -37,8 +37,8 @@ function Game(props) {
       <Option id="2" answer={question.options[1].id} onClick={props.onClick}>{question.options[1].name}</Option>
       <Option id="3" answer={question.options[2].id} onClick={props.onClick}>{question.options[2].name}</Option>
       <Option id="4" answer={question.options[3].id} onClick={props.onClick}>{question.options[3].name}</Option>
-      <div className="info">{question.type} : {question.content}</div>
-      <div className="points">Points: {points}</div>
+      <div className="info"><strong>{question.type}</strong>: {question.content}</div>
+      <div className="points">Score: {points}</div>
       {loading &&
       <div className="loader">
         <img src={loader} alt="loader" />
@@ -70,14 +70,16 @@ class App extends Component {
   }
 
   handleAnswerClick(answer) {
-    const points = this.state.points;
+    const actualPoints = this.state.points;
+    let points = 0;
     if(answer === this.state.data.answer) {
       NotificationManager.success('+1 points', 'You got it!',2000);
-      this.setState({points: points+1})
+      points = actualPoints+1;
     } else {
       NotificationManager.error('-1 points', 'You miss it!',2000);
-      this.setState({ points: points -1})
+      points = actualPoints > 0 ? actualPoints-1 : 0;
     }
+    this.setState({ points: points })
     this.loadRemoteData();
   }
 
