@@ -1,52 +1,10 @@
 import React, { Component } from 'react';
-import bjcp from './bjcp.png';
-import loader from './loader.svg';
+import Intro from './components/Intro';
+import Game from './components/Game';
+
 import './App.css';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-
-function Intro(props) {
-  return (
-    <div className="intro">
-      <h1>BJCP Game</h1>
-      <figure>
-        <img src={bjcp} alt="BJCP Logo" />
-      </figure>
-      <p>
-        This is a game to exercise BJCP judge knowledge through a simple multi answer quiz
-        <button className="btn" onClick={props.onClick} >Let's do it!</button>
-      </p>
-      <small className="foot-note">This game is no affiliated with BJCP</small>
-    </div>  
-  );
-}
-
-function Option({id, answer, onClick, ...rest }) {
-  return (
-    <div onClick={() => onClick(answer)} className="options" id={`option-${id}`} {...rest} />
-  )
-}
-
-function Game(props) {
-  const question = props.data
-  const points = props.points
-  const loading = props.loading
-  return (
-    <div className="wrapper">
-      <Option id="1" answer={question.options[0].id} onClick={props.onClick}>{question.options[0].name}</Option>
-      <Option id="2" answer={question.options[1].id} onClick={props.onClick}>{question.options[1].name}</Option>
-      <Option id="3" answer={question.options[2].id} onClick={props.onClick}>{question.options[2].name}</Option>
-      <Option id="4" answer={question.options[3].id} onClick={props.onClick}>{question.options[3].name}</Option>
-      <div className="info"><strong>{question.type}</strong>: {question.content}</div>
-      <div className="points">Score: {points}</div>
-      {loading &&
-      <div className="loader">
-        <img src={loader} alt="loader" />
-      </div>
-      }
-    </div>
-  )
-}
 
 class App extends Component {
   
