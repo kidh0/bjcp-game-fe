@@ -11,12 +11,12 @@ class Game extends React.Component {
         const onClickMethod = this.props.onClick
         return (
             <div className="wrapper">
-                <Option id="1" answer={question.options[0].id} onClick={onClickMethod}>{question.options[0].name}</Option>
-                <Option id="2" answer={question.options[1].id} onClick={onClickMethod}>{question.options[1].name}</Option>
-                <Option id="3" answer={question.options[2].id} onClick={onClickMethod}>{question.options[2].name}</Option>
-                <Option id="4" answer={question.options[3].id} onClick={onClickMethod}>{question.options[3].name}</Option>
+                {question.options.map(option => (                     
+                    <Option 
+                        answer={option.id} onClick={onClickMethod}>{option.name}</Option>    
+                ))}
                 <div className="info"><strong>{question.type}</strong>: {question.content}</div>
-                <div className="points">Score: {points}</div>
+                <div className="score">Score: {points}</div>
                 {loading &&
                     <div className="loader">
                         <img src={loader} alt="loader" />

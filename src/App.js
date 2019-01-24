@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Intro from './components/Intro';
 import Game from './components/Game';
+import axios from "axios";
 
 import './App.css';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { registerDecorator } from 'handlebars';
 
 class App extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.handleShowGameClick = this.handleShowGameClick.bind(this);
-    this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    this.state = { showGame: false, points: 0, loading: false }    
-  }
+  state = { 
+    showGame: false, 
+    points: 0, 
+    loading: false 
+  }    
 
   componentDidMount() {
     this.loadRemoteData();
@@ -21,13 +21,13 @@ class App extends Component {
 
   loadRemoteData() {
     this.setState({loading: true})
-    fetch('https://bjcp-game-be.herokuapp.com/next')
-      .then(response => response.json())
-      .then(data => this.setState({ data: data }))
-      .then(() => this.setState({loading: false}));
+    axios.get('https://bjcp-game-be.herokuapp.com/next').then(res => {
+      this.setState({ data: res.data });
+      this.setState({ loading: false });
+    });
   }
 
-  handleAnswerClick(answer) {
+  handleAnswerClick = answer => {
     const actualPoints = this.state.points;
     let points = 0;
     if(answer === this.state.data.answer) {
@@ -41,23 +41,32 @@ class App extends Component {
     this.loadRemoteData();
   }
 
-  handleShowGameClick() {    
+  handleShowGameClick = () => {    
     this.setState({showGame: true})
   }
 
-  render() {
-    const showGame = this.state.showGame;
-    let content;
-
-    if (showGame) {
-      content = <Game onClick={this.handleAnswerClick} loading={this.state.loading} points={this.state.points} data={this.state.data} />
+  renderContent = () => {
+    if (this.state.showGame) {
+      const { loading, points, data } = this.state; 
+      return (
+        <Game
+          onClick={this.handleAnswerClick}
+          loading={loading}
+          points={points}
+          data={data}
+        />
+      );
     } else {
-      content = <Intro onClick={this.handleShowGameClick} />
+      return (
+        <Intro onClick={this.handleShowGameClick} />
+      );
     }
+  }
 
+  render() {
     return (
       <div className="wrapper">
-        {content}
+        {this.renderContent()}
         <NotificationContainer/>
       </div>
     );
