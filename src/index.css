@@ -8,16 +8,16 @@
   z-index: 9999;
 }
 .intro .btn {    
-    font-size: inherit;
-    text-align: center;
-    padding: .5em 1em;
-    color: #fff;
-    border: 1px solid #999;
-    border: 0 rgba(0,0,0,0);
-    background-color: #A6572D;
-    text-decoration: none;
-    border-radius: 2px;
-    width: 100%;
+  background-color: #A6572D;
+  border-radius: 2px;
+  border: 0 rgba(0,0,0,0);
+  border: 1px solid #999;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em 1em;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
 }
 .intro h1 {
   color: #A6572D;
@@ -47,17 +47,14 @@
   left: 0px;
   text-align: center;
 }
-.points {
-  background-color: #301213;
-  position: absolute;  
-  color: #fff;
-  padding: 10px 15px;  
-}
 .info {
   background-color: #E9D67C;
   position: absolute;
   padding: 15px;
   overflow: auto;
+  height: 60%;
+  width: 100%;
+  font-size: 3.5vw;
 }
 .loader {
   position: absolute;
@@ -77,15 +74,15 @@
 
 .options {
   cursor: pointer;
+  font-size: 4vw;
+  height: 16%;
+  padding: 10px 5px;
   position: absolute;
-  /* width: 35%; */
-  /* height: 50%; */
   text-align: center;
   text-shadow: 1px 1px 3px #F0EEBB;
-  padding: 10px 5px;
-  word-break: word-break
+  width: 50%;
+  word-break: word-break;
 }
-
 .options h2 {
   position: absolute;
   font-size: 4vw;
@@ -93,35 +90,37 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-#option-1 {
+.options:nth-child(1) {
   background-color: #F0EEBB;
+  bottom: 24%;
 }
-#option-2 {
+.options:nth-child(2) {
   background-color: #DCB135;
+  bottom: 24%;
+  left: 50%;
 }
-#option-3 {
+.options:nth-child(3) {
   background-color: #C88A2C;
+  bottom: 8%;
 }
-#option-4 {
+.options:nth-child(4) {
   background-color: #A6572D;
+  bottom: 8%;
+  right: 0px;
 }
-
-.points {  
-  width: 100%;
-  left: 0;
+.score {  
+  background-color: #301213;
   bottom: 0;
+  color: #fff;
+  font-size: 3vw;
   height: 8%;
+  left: 0;
+  padding: 10px 15px;  
+  position: absolute;  
+  width: 100%;
 }
-
 @media (min-width: 601px)
 {
-  .info {
-    width: 100%;
-    height: 50%;
-    left: 0;
-    top: 0;
-    font-size: 2.5vw;
-  }  
   .intro h1 {
     font-size: 7vh;
   }
@@ -130,62 +129,17 @@
     max-width: 40vw;
     margin: 0px auto;
   }
-  .points {
-    font-size: 3vw;
-  }
-  .options {
-    font-size: 4vw;
-    height: 22%;
-    width: 50%;
-  }
-  #option-1 {
-    bottom: 28%;
-  }
-  #option-2 {
-    bottom: 28%;
-    left: 50%;
-  }
-  #option-3 {
-    bottom: 8%;
-  }
-  #option-4 {
-     bottom: 8%;
-     right: 0px;
-  }
 }
 
 @media (max-width: 600px)
 {
   .options {
-    font-size: 5vw;
-    height: 25%;
-    width: 25%;
-  }
-  .points {  
-    bottom: 0%;
-    height: 6%;
+    font-size: 6vw;
   }
   .info {
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 75%;
-    font-size:4.5vw;
+    font-size:5.5vw;
   }
-  #option-1 {
-    left: 0px;
-    top: 75%;
-  }
-  #option-2 {
-    left: 25%;
-    top: 75%;
-  }
-  #option-3 {
-    left: 50%;
-    top: 75%;
-  }
-  #option-4 {
-    bottom: 0;
-    right: 0;
+  .score {
+    font-size: 6vw;
   }
 }
