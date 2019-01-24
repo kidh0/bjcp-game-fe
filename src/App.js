@@ -6,7 +6,6 @@ import axios from "axios";
 import './App.css';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { registerDecorator } from 'handlebars';
 
 class App extends Component {
   state = { 
